@@ -56,3 +56,8 @@ export const getWriterList = () => {
 	}
 }
 
+export const changeScrollTopShow = (data) => ({
+	type: actions.CHANGE_SCROLL_TOP_SHOW,
+	value: data
+})
+

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Topic from './components/Topic'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
@@ -8,10 +8,14 @@ import { actionCreator } from './store'
 import {
 	HomeWrapper,
 	HomeLeft,
-	HomeRight
+	HomeRight,
+	BackTop
 } from './style'
-class Home extends Component{
+// pureComponent 一定要和 immutatable.js 相结合来管理数据 不然会有问题
+class Home extends PureComponent {
+
 	render(){
+		const { showScrollTop } = this.props
 		return (
 			<HomeWrapper>
 				<HomeLeft>
@@ -23,22 +27,49 @@ class Home extends Component{
 					<Recommend />
 					<Writer />
 				</HomeRight>
+				{ showScrollTop  ? <BackTop onClick={this.handleScrollTop.bind(this)}>△</BackTop> : null}
 			</HomeWrapper>
 		)
 	}
 
 	componentDidMount(){
 		this.props.getHomeData()
+		this.bindEvents();
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll',this.props.changeScrollTopShow)
+	}
+
+	handleScrollTop(){
+		window.scrollTo(0,0)
+	}
+
+	bindEvents(){
+		window.addEventListener('scroll',this.props.changeScrollTopShow)
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		showScrollTop : state.get('home').get('showScrollTop')
+	}
+}
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getHomeData(){
 			dispatch(actionCreator.getHomeData())
+		},
+		changeScrollTopShow () {
+			console.log(document.documentElement.scrollTop)
+			if(document.documentElement.scrollTop > 100){
+				dispatch(actionCreator.changeScrollTopShow(true))
+			}else{
+				dispatch(actionCreator.changeScrollTopShow(false))
+			}
 		}
 	}
 }
 
-export default connect(null,mapDispatchToProps)(Home)
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

@@ -6,7 +6,8 @@ const defaultState = fromJS({
 	recommendList: [],
 	writerList: [],
 	writer_page_now: 0,
-	writer_totalPage: 1
+	writer_totalPage: 1,
+	showScrollTop: false
 });
 
 export default (state = defaultState, action) => {
@@ -25,7 +26,9 @@ export default (state = defaultState, action) => {
 				writer_totalPage: action.writer_totalPage
 			})
 		case actions.SWITCHPAGE:
-			return state.set('writer_page_now',action.value)			
+			return state.set('writer_page_now',action.value)
+		case actions.CHANGE_SCROLL_TOP_SHOW:
+			return state.set('showScrollTop',action.value)	
 		default:
 			return state
 	}

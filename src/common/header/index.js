@@ -3,6 +3,7 @@ import {CSSTransition} from 'react-transition-group'
 import { connect } from 'react-redux'
 import { HeaderWapper, Logo, Nav, NavItem, NavSearch, Addtion, Button, SearchWrapper, SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchInfoList , SearchInfoItem } from './style'
 import  { actionCreator } from './store'
+import { Link } from 'react-router-dom'
 
 
 //无状态组件，性能更高
@@ -89,7 +90,9 @@ class Header extends Component {
 		const { focused , handleInputFocus, handleInputBlur, searchInfoList} = this.props
 		return (
 			<HeaderWapper>
-				<Logo href='/' />
+				<Link to="/">
+					<Logo />
+				</Link>
 				<Nav>
 					<NavItem className='left active'>首页</NavItem>
 					<NavItem className='left'>下载App</NavItem>

@@ -6,7 +6,7 @@ export const HeaderWapper = styled.div`
 	position: relative;
 `
 
-export const Logo = styled.a`
+export const Logo = styled.div`
 	position: absolute;
 	display: block;
 	width: 100px;

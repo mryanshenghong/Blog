@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { actionCreator } from '../store'
 import {
@@ -6,7 +6,7 @@ import {
 	WriterWrapper
 } from '../style'
 import { SearchInfoSwitch } from '../../../common/header/style'
-class Writer extends Component{
+class Writer extends PureComponent{
 	render(){
 		const { writer_page_now, writer_totalPage, handleSwitchPage } = this.props
 		return (

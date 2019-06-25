@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
 	ListItem,
@@ -8,7 +8,8 @@ import {
 	RecordItem
 } from '../style'
 import { actionCreator } from '../store'
-class List extends Component{
+import { Link } from 'react-router-dom'
+class List extends PureComponent{
 
 	render(){
 		const { articleList, getMoreArtical } = this.props 
@@ -17,27 +18,29 @@ class List extends Component{
 				{
 					articleList.map( (item) => {
 						return (
-							<ListItem key={item.get('id')} img={item.get('imgUrl')}>
-								<img className="list-pic" src={item.get('imgUrl')} alt=""/>
-								<ListInfo img={item.get('imgUrl')}>
-									<h3 className="title">{item.get('title')}</h3>
-									<p className="des">{item.get('desc')}</p>
-									<Records>
-										<RecordItem>
-											<i className="iconfont app">&#xe609;</i>{item.get('app')}
-										</RecordItem>
-										<RecordItem>
-											<i className='author'>{item.get('author')}</i>
-										</RecordItem>
-										<RecordItem>
-											<i className="iconfont">&#xe628;</i>{item.get('commends')}
-										</RecordItem>
-										<RecordItem>
-											<i className="iconfont">&#xe757;</i>{item.get('likes')}
-										</RecordItem>
-									</Records>
-								</ListInfo>
-							</ListItem>	
+							<Link key={item.get('id')} to='/detail'>
+								<ListItem  img={item.get('imgUrl')}>
+									<img className="list-pic" src={item.get('imgUrl')} alt=""/>
+									<ListInfo img={item.get('imgUrl')}>
+										<h3 className="title">{item.get('title')}</h3>
+										<p className="des">{item.get('desc')}</p>
+										<Records>
+											<RecordItem>
+												<i className="iconfont app">&#xe609;</i>{item.get('app')}
+											</RecordItem>
+											<RecordItem>
+												<i className='author'>{item.get('author')}</i>
+											</RecordItem>
+											<RecordItem>
+												<i className="iconfont">&#xe628;</i>{item.get('commends')}
+											</RecordItem>
+											<RecordItem>
+												<i className="iconfont">&#xe757;</i>{item.get('likes')}
+											</RecordItem>
+										</Records>
+									</ListInfo>
+								</ListItem>
+							</Link>	
 						)						
 					})
 				}

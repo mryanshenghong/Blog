@@ -163,3 +163,15 @@ export const WriterList = styled.div`
 		margin-right: 5px;
 	}
 `
+
+export const BackTop = styled.div`
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	right: 100px;
+	bottom: 100px;
+	line-height: 60px;
+	text-align: center;
+	border: 1px solid #ccc;
+	font-size:14px;
+`
