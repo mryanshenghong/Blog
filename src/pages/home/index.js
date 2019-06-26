@@ -62,7 +62,6 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actionCreator.getHomeData())
 		},
 		changeScrollTopShow () {
-			console.log(document.documentElement.scrollTop)
 			if(document.documentElement.scrollTop > 100){
 				dispatch(actionCreator.changeScrollTopShow(true))
 			}else{
