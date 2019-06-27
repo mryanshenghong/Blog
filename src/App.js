@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react'
 import Header from './common/header'
 import store from './store'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom'
 import Login from './pages/login'
 import Home from './pages/home'
 import Detail from './pages/detail/loadable'
@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
           <Provider store={store}>
-	            <BrowserRouter>
+	            <HashRouter>
 		            <Fragment>
 		            <Header />
 		            	<Route path="/" exact component={Home}></Route>
@@ -24,7 +24,7 @@ class App extends Component {
 		            	<Route path="/write" exact component={Write}></Route>
 		            	<Route path="/download" exact component={Download}></Route>
 		            </Fragment>
-	            </BrowserRouter>				              
+	            </HashRouter>				              
           </Provider>                
     );
   }

@@ -17,7 +17,6 @@ class Recommend extends PureComponent{
 						)
 					})
 				}
-				<RecommendItem  imgUrl='./api/recommendImg/member.png' />
 			</RecommendWrapper>
 		)
 	}
