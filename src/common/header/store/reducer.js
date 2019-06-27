@@ -6,6 +6,7 @@ const defaultState = fromJS({
 	searchInfoList:[],
 	page: 0,
 	totalPage: 1,
+	activeLink:'home'
 });
 
 export default (state = defaultState, action) => {
@@ -24,7 +25,9 @@ export default (state = defaultState, action) => {
 		case actions.INPUT_MOUSE_LEAVE:
 			return state.set('mouseIn',false)	
 		case actions.SWITCHPAGE:
-			return state.set('page',action.value)			
+			return state.set('page',action.value)
+		case actions.CHANGE_ACTIVE_LINK:
+			return state.set('activeLink',action.value)			
 		default:
 			return state
 	}

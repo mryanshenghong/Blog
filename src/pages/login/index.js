@@ -6,7 +6,9 @@ import {
 	LoginWrapper,
 	LoginBox,
 	Input,
-	Button
+	Button,
+	Option,
+	SocialBox
 } from './style'
 
 class Login extends PureComponent{
@@ -16,11 +18,13 @@ class Login extends PureComponent{
 			return (
 				<LoginWrapper>
 					<LoginBox>
-						<form action="">
-						<Input placeholder="账号"  ref={ (input) => { this.account = input }} />
-						<Input placeholder="密码" type='password' ref={(input) => {this.password = input}} />
-						</form>
+						<Option><a className="active">登录</a>·<a>注册</a></Option>
+						<Input className='acc' placeholder="账号"  ref={ (input) => { this.account = input }} />
+						<Input className='pwd' placeholder="密码" type='password' ref={(input) => {this.password = input}} />
 						<Button onClick={ () => this.props.login(this.account,this.password)}>登录</Button>
+					<SocialBox>
+						<p className='social-title'>社交帐号登录</p>
+					</SocialBox>						
 					</LoginBox>
 				</LoginWrapper>
 			)			

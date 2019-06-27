@@ -43,5 +43,10 @@ export const getSearchInfoList = () =>{
 	}
 }
 
+export const changeActiveLink = (linkName) => ({
+	type: actions.CHANGE_ACTIVE_LINK,
+	value: linkName
+})
+
 
 

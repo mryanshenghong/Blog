@@ -88,17 +88,21 @@ class Header extends Component {
 		}
 	}	
 	render(){
-		const { focused , handleInputFocus, handleInputBlur, searchInfoList, login, logout} = this.props
+		const { focused , handleInputFocus, handleInputBlur, searchInfoList, login, logout, activeLink, changeActive } = this.props
 		return (
 			<HeaderWapper>
 				<Link to="/">
 					<Logo />
 				</Link>
 				<Nav>
-					<NavItem className='left active'>首页</NavItem>
-					<NavItem className='left'>下载App</NavItem>
+					<Link to="/">
+						<NavItem onClick={() => {changeActive('home')}} className={`left ${activeLink === 'home' ? 'active' : null}`}>首页</NavItem>
+					</Link>
+					<Link to="/download">
+						<NavItem onClick={() => {changeActive('download')}} className={`left ${activeLink === 'download' ? 'active' : null}`}>下载App</NavItem>
+					</Link>
 					{
-						login ? <NavItem className='right' onClick={logout}>退出</NavItem> : <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
+						login ? <NavItem className='right' onClick={logout}>退出</NavItem> : <Link to='/login'><NavItem className={`right ${activeLink === 'login' ? 'active' : null}`} onClick={() => {changeActive('login')}}>登录</NavItem></Link>
 					}
 					<NavItem className='right'>
 						<i className="iconfont app">&#xe609;</i>
@@ -146,7 +150,8 @@ const mapStateToProps = (state) => {
 		page: state.get('header').get('page'),
 		mouseIn: state.get('header').get('mouseIn'),
 		totalPage: state.get('header').get('totalPage'),
-		login: state.get('login').get('login')
+		login: state.get('login').get('login'),
+		activeLink: state.getIn(['header','activeLink'])
 	}
 }
 
@@ -179,6 +184,9 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(actionCreator.handleSwitchPage(0))
 			}
 			
+		},
+		changeActive(linkName) {
+			dispatch(actionCreator.changeActiveLink(linkName))
 		},
 		logout(){
 			dispatch(LoginActionCreator.logout())
